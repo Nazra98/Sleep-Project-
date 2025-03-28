@@ -10,13 +10,14 @@ openai.api_key = api_key
 
 # Load and clean queries from file
 
-#file_path = "Category 1 Prompt.txt"
+file_path = "Category 1 Prompt.txt"
 file_path = "Category 1 No Prompt.txt"
 
 with open(file_path, "r", encoding="utf-8") as f:
     raw_text = f.read()
 
 # Clean up the text and extract queries
+
 cleaned_text = re.sub(r'[\r\n\t]', ' ', raw_text)
 parsed_data = json.loads(cleaned_text) if raw_text.strip().startswith("{") else {"note": raw_text}
 extracted_queries = re.findall(r'\d+\.\s*(.*?)\s*(?=\d+\.|\Z)', parsed_data.get("note", ""), re.DOTALL)
@@ -30,7 +31,7 @@ def fetch_response(query):
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[
-              # Prompt {"role": "system", "content": "You are a sleep expert who answers questions using scientific accuracy and AASM guidelines."}, 
+              {"role": "system", "content": "You are a sleep expert who answers questions using scientific accuracy and AASM guidelines."}, 
               
               {"role": "user", "content": [{"type": "text", "text": query}
                                            
