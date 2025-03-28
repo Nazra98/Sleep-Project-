@@ -4,7 +4,7 @@ from sklearn.metrics import (
     f1_score, cohen_kappa_score, roc_auc_score
 )
 
-# === CATEGORY 1 FILES ===
+# Category 1 files 
 category_1_files = {
     "ChatGPT (No Prompt)": "ChatGPT No Prompt 1.csv",
     "ChatGPT (Prompted)": "ChatGPT Prompt 1.csv",
@@ -17,7 +17,7 @@ category_1_files = {
 print(" CATEGORY 1 EVALUATION\n")
 results = []  # Collect all results here
 
-# === EVALUATE EACH FILE ===
+# Analyse each file 
 for model_name, file in category_1_files.items():
     try:
         df = pd.read_csv(file)
@@ -68,7 +68,7 @@ for model_name, file in category_1_files.items():
         print(f" Error processing {file}: {e}")
         print("-" * 40)
 
-# === SAVE RESULTS TO CSV ===
+# Save results to CVS 
 results_df = pd.DataFrame(results)
-results_df.to_csv("Category1 Analysis Results.csv", index=False)
-print("Results saved as CSV: Category1 Analysis Results.csv")
+results_df.to_csv("Category 1 Analysis Results.csv", index=False)
+print("Results saved as CSV: Category 1 Analysis Results.csv")
