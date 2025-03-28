@@ -3,10 +3,9 @@ import json
 import pandas as pd
 import requests
 
-
 # Load and clean queries
 
-# file_path = "Category 1 Prompt.txt"
+file_path = "Category 1 Prompt.txt"
 file_path = "Category 1 No Prompt.txt"
 
 with open(file_path, "r", encoding="utf-8") as f:
@@ -47,7 +46,7 @@ def fetch_response_ollama(query, model="llama3.1"):
         return f"Error: {str(e)}"
 
 # Limit number of queries to process 
-num_queries_to_process = min(7,len(extracted_queries))
+num_queries_to_process = min(10,len(extracted_queries))
 responses = [fetch_response_ollama(query) for query in extracted_queries[:num_queries_to_process]]
 
 # Store results
